@@ -17,7 +17,7 @@ public class Drive extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public Drive(ExampleSubsystem subsystem) {
+  public Drive(ExampleSubsystem subsystem, double speed) {
     m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
@@ -30,12 +30,14 @@ public class Drive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.drive();
+    m_subsystem.drive(0.2);
   }
 
   // Called once the command ends or is interrupted.
-
-  
+  @Override
+  public void end(boolean interrupted) {
+    m_subsystem.drive(0);
+  }
 
   // Returns true when the command should end.
   @Override

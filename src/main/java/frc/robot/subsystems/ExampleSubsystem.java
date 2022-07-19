@@ -28,15 +28,8 @@ public class ExampleSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run during simulation
   }
 
-  public void drive() {
-    motor1.set(ControlMode.PercentOutput, 0.3);
+  public void drive(double speed) {
+    motor1.set(ControlMode.PercentOutput, speed);
   }
 
-  public void stop() {
-    motor1.set(ControlMode.PercentOutput, 0);
-  }
-
-  public void invert(){
-    motor1.set(ControlMode.PercentOutput, -0.3);
-  }
 }

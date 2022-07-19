@@ -7,8 +7,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Drive;
-import frc.robot.commands.Invert;
-import frc.robot.commands.Halt;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -23,9 +21,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  private final  Drive m_autoCommand = new Drive(m_exampleSubsystem);
-  private final Invert command = new Invert(m_exampleSubsystem);
-  private final Halt stopCommand = new Halt(m_exampleSubsystem);
+  private final  Drive m_autoCommand =  new Drive(m_exampleSubsystem, 0.3);
 
   private final XboxController controller = new XboxController(0);
 
@@ -43,11 +39,9 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     JoystickButton b1 = new JoystickButton(controller,4);
-    JoystickButton b2 = new JoystickButton(controller, 3);
     JoystickButton b3 = new JoystickButton(controller, 2);
-    b1.toggleWhenPressed(m_autoCommand);
-    b2.toggleWhenPressed(command);
-    b3.toggleWhenPressed(stopCommand);
+    b1.toggleWhenPressed(new Drive(m_exampleSubsystem, 1));
+    b3.toggleWhenPressed(new Drive(m_exampleSubsystem, -1));
   }
 
   /**
